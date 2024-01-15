@@ -2,8 +2,9 @@ package main
 
 import (
 	"context"
-	"github.com/celestiaorg/blobstreamx-monitor/cmd/blobstreamx-monitor/root"
 	"os"
+
+	"github.com/celestiaorg/blobstreamx-monitor/cmd/blobstreamx-monitor/root"
 )
 
 func main() {
