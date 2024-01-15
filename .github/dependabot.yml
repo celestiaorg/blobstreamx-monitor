@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    reviewers: 
+      - "sweexordious"
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    reviewers: 
+      - "sweexordious"
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    labels:
+      - automerge
+      - dependencies
+    reviewers: 
+      - "sweexordious"

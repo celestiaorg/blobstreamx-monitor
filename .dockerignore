@@ -1,0 +1,9 @@
+build/
+.vscode/
+.idea/
+tmp/
+*.md
+*.txt
+profile.out
+*.yml
+*.yaml
