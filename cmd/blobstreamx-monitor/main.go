@@ -1,0 +1,15 @@
+package main
+
+import (
+	"context"
+	"os"
+
+	"github.com/celestiaorg/blobstreamx-monitor/cmd/blobstreamx-monitor/root"
+)
+
+func main() {
+	rootCmd := root.Cmd()
+	if err := rootCmd.ExecuteContext(context.Background()); err != nil {
+		os.Exit(1)
+	}
+}
