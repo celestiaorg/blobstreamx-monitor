@@ -6,14 +6,14 @@ updates:
       interval: daily
     open-pull-requests-limit: 10
     reviewers: 
-      - "sweexordious"
+      - "rach-id"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: daily
     open-pull-requests-limit: 10
     reviewers: 
-      - "sweexordious"
+      - "rach-id"
   - package-ecosystem: gomod
     directory: "/"
     schedule:
@@ -23,4 +23,4 @@ updates:
       - automerge
       - dependencies
     reviewers: 
-      - "sweexordious"
+      - "rach-id"
