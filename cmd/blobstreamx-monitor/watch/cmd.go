@@ -102,6 +102,7 @@ func Command() *cobra.Command {
 
 			logger.Info("starting watcher", "rpc", config.EVMRPC, "address", config.ContractAddress)
 			for {
+				logger.Debug("waiting for new transactions...")
 				select {
 				case <-ctx.Done():
 					return ctx.Err()
