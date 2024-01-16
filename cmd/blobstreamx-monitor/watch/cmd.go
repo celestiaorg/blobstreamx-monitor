@@ -122,7 +122,7 @@ func Command() *cobra.Command {
 						event.EndBlock,
 					)
 					meters.ProcessedNonces.Add(ctx, 1)
-					logger.Debug("incrementing metric")
+					logger.Debug("incrementing metric 'blobstreamx_monitor_submitted_nonces_counter'")
 				}
 			}
 		},
