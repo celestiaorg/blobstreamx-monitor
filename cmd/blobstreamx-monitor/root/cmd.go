@@ -2,6 +2,7 @@ package root
 
 import (
 	"github.com/celestiaorg/blobstreamx-monitor/cmd/blobstreamx-monitor/version"
+	"github.com/celestiaorg/blobstreamx-monitor/cmd/blobstreamx-monitor/watch"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +17,7 @@ func Cmd() *cobra.Command {
 
 	rootCmd.AddCommand(
 		version.Cmd,
+		watch.Command(),
 	)
 
 	rootCmd.SetHelpCommand(&cobra.Command{})
