@@ -19,12 +19,13 @@ import (
 
 const (
 	defaultMetricsCollectInterval = 10 * time.Second
-	globalMetricsNamespace        = "blobstreamx-watcher"
+	globalMetricsNamespace        = "blobstreamx-monitor"
 )
 
 // Config defines the configuration options for blobstreamx-monitor telemetry.
 type Config struct {
 	Endpoint string
+	Label    string
 	TLS      bool
 }
 
