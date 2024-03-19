@@ -82,7 +82,7 @@ func Command() *cobra.Command {
 				opts = append(opts, otlpmetrichttp.WithInsecure())
 			}
 			var shutdown func() error
-			_, shutdown, err = telemetry.Start(ctx, logger, "blobstreamx-monitor", config.ContractAddress, opts)
+			_, shutdown, err = telemetry.Start(ctx, logger, config.ContractAddress, config.MetricsConfig.Label, opts)
 			if shutdown != nil {
 				stopFuncs = append(stopFuncs, shutdown)
 			}
