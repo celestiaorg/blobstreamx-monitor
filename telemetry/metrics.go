@@ -32,12 +32,12 @@ type Config struct {
 var meter = otel.Meter(globalMetricsNamespace)
 
 type Meters struct {
-	ProcessedNonces metric.Int64Counter
+	ProcessedNonces metric.Int64Histogram
 }
 
 func InitMeters() (*Meters, error) {
-	processedNonces, err := meter.Int64Counter("blobstreamx_monitor_submitted_nonces_counter",
-		metric.WithDescription("the count of the nonces that have been successfully submitted to blobstreamx contract"))
+	processedNonces, err := meter.Int64Histogram("blobstreamx_monitor_submitted_heights",
+		metric.WithDescription("the last height that have been successfully submitted to blobstreamx contract"))
 	if err != nil {
 		return nil, err
 	}
