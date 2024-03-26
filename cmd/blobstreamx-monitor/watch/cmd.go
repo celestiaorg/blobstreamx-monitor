@@ -8,6 +8,7 @@ import (
 	"os/signal"
 	"strings"
 	"syscall"
+	"time"
 
 	"github.com/celestiaorg/blobstreamx-monitor/cmd/blobstreamx-monitor/version"
 	"github.com/celestiaorg/blobstreamx-monitor/telemetry"
@@ -108,7 +109,21 @@ func Command() *cobra.Command {
 					return ctx.Err()
 				case err := <-subscription.Err():
 					logger.Error("subscription failed", "err", err)
-					// TODO(@rach-id): recover from failure
+					recovered := false
+					for i := 0; i < 50; i++ {
+						subscription, err = blobstreamWrapper.WatchDataCommitmentStored(&bind.WatchOpts{}, eventsChan, nil, nil, nil)
+						if err != nil {
+							logger.Error("subscription failed. retrying in 30 seconds...", "err", err)
+							time.Sleep(30 * time.Second)
+							continue
+						}
+						recovered = true
+						break
+					}
+					if recovered {
+						logger.Error("subscription recovered")
+						continue
+					}
 					return err
 				case event := <-eventsChan:
 					logger.Info(
