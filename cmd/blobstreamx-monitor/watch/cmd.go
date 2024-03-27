@@ -10,6 +10,8 @@ import (
 	"syscall"
 	"time"
 
+	"go.opentelemetry.io/otel/metric"
+
 	"github.com/celestiaorg/blobstreamx-monitor/cmd/blobstreamx-monitor/version"
 	"github.com/celestiaorg/blobstreamx-monitor/telemetry"
 	"github.com/cosmos/cosmos-sdk/server"
@@ -70,7 +72,37 @@ func Command() *cobra.Command {
 				return err
 			}
 
-			meters, err := telemetry.InitMeters()
+			nonceChan := make(chan int64, 100)
+			nonceCallback := func(ctx context.Context, observer metric.Int64Observer) error {
+				select {
+				case nonce, ok := <-nonceChan:
+					if !ok {
+						return fmt.Errorf("error reading nonce from nonces channel in callback")
+					}
+					observer.Observe(nonce)
+					logger.Debug("recording metric 'blobstreamx_monitor_submitted_nonces'")
+					return nil
+				default:
+					return nil
+				}
+			}
+
+			heightChan := make(chan int64, 100)
+			heightCallback := func(ctx context.Context, observer metric.Int64Observer) error {
+				select {
+				case height, ok := <-heightChan:
+					if !ok {
+						return fmt.Errorf("error reading height from heights channel in callback")
+					}
+					observer.Observe(height)
+					logger.Debug("recording metric 'blobstreamx_monitor_submitted_heights'")
+					return nil
+				default:
+					return nil
+				}
+			}
+
+			meters, err := telemetry.InitMeters(nonceCallback, heightCallback)
 			if err != nil {
 				return err
 			}
@@ -139,6 +171,12 @@ func Command() *cobra.Command {
 					)
 					meters.ProcessedNonces.Add(ctx, 1)
 					logger.Debug("incrementing metric 'blobstreamx_monitor_submitted_nonces_counter'")
+					go func() {
+						nonceChan <- event.ProofNonce.Int64()
+					}()
+					go func() {
+						heightChan <- int64(event.EndBlock)
+					}()
 				}
 			}
 		},
@@ -162,7 +200,7 @@ func GetLogger(level string, format string) (tmlog.Logger, error) {
 	return server.ZeroLogWrapper{Logger: zerolog.New(logWriter).Level(logLvl).With().Timestamp().Logger()}, nil
 }
 
-// TrapSignal will listen for any OS signal and cancel the context to gracefully exit.
+// TrapSignal will listen for any OS signal and cancel the context to exit gracefully.
 func TrapSignal(logger tmlog.Logger, cancel context.CancelFunc) {
 	sigCh := make(chan os.Signal, 1)
 
