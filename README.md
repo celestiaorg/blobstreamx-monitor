@@ -2,7 +2,11 @@
 
 Simple monitoring tool for BlobstreamX contract. It allows provers/relayers for BlobstreamX to monitor the BlobstreamX updates, and be notified.
 
-The tool currently sends an OTEL message whenever a new batch is submitted, verified and committed by the contract. This message is a counter `blobstreamx_monitor_submitted_nonces_counter` of type `Int64Counter`.
+The tool currently sends OTEL messages whenever a new batch is submitted, verified and committed by the contract:
+
+- A counter `blobstreamx_monitor_submitted_nonces_counter` of type `Int64Counter`.
+- A gauge `blobstreamx_monitor_submitted_nonces` of type `Int64ObservableGauge`.
+- A gauge `blobstreamx_monitor_submitted_heights` of type `Int64ObservableGauge`.
 
 ## Install
 
