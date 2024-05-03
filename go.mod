@@ -9,7 +9,7 @@ require (
 	github.com/spf13/cobra v1.8.0
 	github.com/succinctlabs/blobstreamx v0.0.0-20240115194141-5649c689a7fe
 	github.com/tendermint/tendermint v0.35.9
-	go.opentelemetry.io/contrib/instrumentation/runtime v0.49.0
+	go.opentelemetry.io/contrib/instrumentation/runtime v0.51.0
 	go.opentelemetry.io/otel v1.26.0
 	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp v1.26.0
 	go.opentelemetry.io/otel/metric v1.26.0
