@@ -15,6 +15,7 @@ const (
 
 	FlagMetricsEndpoint = "metrics.endpoint"
 	FlagMetricsTLS      = "metrics.tls"
+	FlagMetricsLabel    = "metrics.label"
 
 	FlagLogLevel  = "log.level"
 	FlagLogFormat = "log.format"
@@ -23,6 +24,7 @@ const (
 func addStartFlags(cmd *cobra.Command) *cobra.Command {
 	cmd.Flags().String(FlagEVMRPC, "http://localhost:8545", "Specify the ethereum rpc address")
 	cmd.Flags().String(FlagEVMContractAddress, "", "Specify the contract at which the BlobstreamX is deployed")
+	cmd.Flags().String(FlagMetricsLabel, "blobstream x", "Custom label for the metric")
 	cmd.Flags().String(
 		FlagMetricsEndpoint,
 		"localhost:4318",
@@ -87,6 +89,11 @@ func parseStartFlags(cmd *cobra.Command) (StartConfig, error) {
 		return StartConfig{}, err
 	}
 
+	label, err := cmd.Flags().GetString(FlagMetricsLabel)
+	if err != nil {
+		return StartConfig{}, err
+	}
+
 	tls, err := cmd.Flags().GetBool(FlagMetricsTLS)
 	if err != nil {
 		return StartConfig{}, err
@@ -108,6 +115,7 @@ func parseStartFlags(cmd *cobra.Command) (StartConfig, error) {
 		MetricsConfig: telemetry.Config{
 			Endpoint: endpoint,
 			TLS:      tls,
+			Label:    label,
 		},
 		LogLevel:  logLevel,
 		LogFormat: logFormat,

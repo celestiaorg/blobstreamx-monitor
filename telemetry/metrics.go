@@ -19,12 +19,13 @@ import (
 
 const (
 	defaultMetricsCollectInterval = 10 * time.Second
-	globalMetricsNamespace        = "blobstreamx-watcher"
+	globalMetricsNamespace        = "blobstreamx-monitor"
 )
 
 // Config defines the configuration options for blobstreamx-monitor telemetry.
 type Config struct {
 	Endpoint string
+	Label    string
 	TLS      bool
 }
 
@@ -32,17 +33,35 @@ var meter = otel.Meter(globalMetricsNamespace)
 
 type Meters struct {
 	ProcessedNonces metric.Int64Counter
+	Nonces          metric.Int64ObservableGauge
+	Heights         metric.Int64ObservableGauge
 }
 
-func InitMeters() (*Meters, error) {
+func InitMeters(noncesCallback, heightsCallback metric.Int64Callback) (*Meters, error) {
 	processedNonces, err := meter.Int64Counter("blobstreamx_monitor_submitted_nonces_counter",
 		metric.WithDescription("the count of the nonces that have been successfully submitted to blobstreamx contract"))
 	if err != nil {
 		return nil, err
 	}
 
+	nonces, err := meter.Int64ObservableGauge("blobstreamx_monitor_submitted_nonces",
+		metric.WithDescription("the nonces that have been successfully submitted to blobstreamx contract"),
+		metric.WithInt64Callback(noncesCallback))
+	if err != nil {
+		return nil, err
+	}
+
+	heights, err := meter.Int64ObservableGauge("blobstreamx_monitor_submitted_heights",
+		metric.WithDescription("the latest heights that have been successfully submitted to blobstreamx contract"),
+		metric.WithInt64Callback(heightsCallback))
+	if err != nil {
+		return nil, err
+	}
+
 	return &Meters{
 		ProcessedNonces: processedNonces,
+		Heights:         heights,
+		Nonces:          nonces,
 	}, nil
 }
 
