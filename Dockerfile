@@ -16,7 +16,7 @@ RUN uname -a &&\
     make build
 
 # final image
-FROM docker.io/alpine:3.20.2
+FROM docker.io/alpine:3.20.3
 
 ARG UID=10001
 ARG USER_NAME=celestia
