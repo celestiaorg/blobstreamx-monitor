@@ -31,7 +31,7 @@ func Command() *cobra.Command {
 	command := &cobra.Command{
 		Use:   "start <flags>",
 		Short: "Starts the BlobstreamX monitor",
-		RunE: func(cmd *cobra.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, _ []string) error {
 			config, err := parseStartFlags(cmd)
 			if err != nil {
 				return err
@@ -73,7 +73,7 @@ func Command() *cobra.Command {
 			}
 
 			nonceChan := make(chan int64, 100)
-			nonceCallback := func(ctx context.Context, observer metric.Int64Observer) error {
+			nonceCallback := func(_ context.Context, observer metric.Int64Observer) error {
 				select {
 				case nonce, ok := <-nonceChan:
 					if !ok {
@@ -88,7 +88,7 @@ func Command() *cobra.Command {
 			}
 
 			heightChan := make(chan int64, 100)
-			heightCallback := func(ctx context.Context, observer metric.Int64Observer) error {
+			heightCallback := func(_ context.Context, observer metric.Int64Observer) error {
 				select {
 				case height, ok := <-heightChan:
 					if !ok {
