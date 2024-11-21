@@ -28,7 +28,7 @@ jobs:
       - name: Generate coverage.txt
         run: make test-cover
       - name: Upload coverage.txt
-        uses: codecov/codecov-action@v5.0.4
+        uses: codecov/codecov-action@v5.0.7
         with:
           file: ./coverage.txt
 
