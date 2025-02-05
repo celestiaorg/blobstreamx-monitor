@@ -1,5 +1,5 @@
 # stage 1 Build blobstreamx-monitor binary
-FROM --platform=$BUILDPLATFORM docker.io/golang:1.23.5-alpine3.20 as builder
+FROM --platform=$BUILDPLATFORM docker.io/golang:1.23.6-alpine3.20 as builder
 
 ARG TARGETOS
 ARG TARGETARCH
