@@ -4,7 +4,7 @@ go 1.23.1
 
 require (
 	github.com/cosmos/cosmos-sdk v0.50.3
-	github.com/prometheus/client_golang v1.20.5
+	github.com/prometheus/client_golang v1.21.0
 	github.com/rs/zerolog v1.33.0
 	github.com/spf13/cobra v1.9.1
 	github.com/succinctlabs/blobstreamx v0.0.0-20240115194141-5649c689a7fe
@@ -103,7 +103,7 @@ require (
 	github.com/jhump/protoreflect v1.15.3 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/jmhodges/levigo v1.0.0 // indirect
-	github.com/klauspost/compress v1.17.9 // indirect
+	github.com/klauspost/compress v1.17.11 // indirect
 	github.com/lib/pq v1.10.7 // indirect
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
 	github.com/linxGnu/grocksdb v1.8.6 // indirect
@@ -121,7 +121,7 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
-	github.com/prometheus/common v0.55.0 // indirect
+	github.com/prometheus/common v0.62.0 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/rakyll/statik v0.1.7 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
@@ -169,7 +169,7 @@ require (
 )
 
 require (
-	github.com/ethereum/go-ethereum v1.15.1
+	github.com/ethereum/go-ethereum v1.15.3
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.6 // indirect
 )
