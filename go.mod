@@ -1,6 +1,7 @@
 module github.com/celestiaorg/blobstreamx-monitor
 
 go 1.23.1
+toolchain go1.24.1
 
 require (
 	github.com/cosmos/cosmos-sdk v0.50.3
@@ -169,7 +170,7 @@ require (
 )
 
 require (
-	github.com/ethereum/go-ethereum v1.15.6
+	github.com/ethereum/go-ethereum v1.15.7
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.6 // indirect
 )
