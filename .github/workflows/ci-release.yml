@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - uses: goreleaser/goreleaser-action@v6.3.0
         with:
           version: latest
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: "write-all"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Bump version and push tag
         # Placing the if condition here is a workaround for needing to block
         # on this step during workflow dispatch events but the step not
@@ -86,7 +86,7 @@ jobs:
       (github.event_name == 'push' && contains(github.ref, 'refs/tags/'))
     permissions: "write-all"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: git fetch --force --tags
       - uses: actions/setup-go@v5
         with:
