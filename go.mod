@@ -6,7 +6,7 @@ require (
 	github.com/cosmos/cosmos-sdk v0.50.3
 	github.com/prometheus/client_golang v1.23.2
 	github.com/rs/zerolog v1.34.0
-	github.com/spf13/cobra v1.10.1
+	github.com/spf13/cobra v1.10.2
 	github.com/succinctlabs/blobstreamx v0.0.0-20240115194141-5649c689a7fe
 	github.com/tendermint/tendermint v0.35.9
 	go.opentelemetry.io/contrib/instrumentation/runtime v0.63.0
