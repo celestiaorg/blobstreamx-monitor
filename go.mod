@@ -1,6 +1,6 @@
 module github.com/celestiaorg/blobstreamx-monitor
 
-go 1.25.0
+go 1.26.2
 
 require (
 	github.com/cosmos/cosmos-sdk v0.50.3
