@@ -1,5 +1,5 @@
 # stage 1 Build blobstreamx-monitor binary
-FROM --platform=$BUILDPLATFORM docker.io/golang:1.26.2-alpine3.22 AS builder
+FROM --platform=$BUILDPLATFORM docker.io/golang:1.26.3-alpine3.22 AS builder
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -16,7 +16,7 @@ RUN uname -a &&\
     make build
 
 # final image
-FROM docker.io/alpine:3.23.3
+FROM docker.io/alpine:3.23.4
 
 ARG UID=10001
 ARG USER_NAME=celestia
