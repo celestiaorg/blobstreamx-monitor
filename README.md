@@ -1,5 +1,17 @@
 # blobstreamx-monitor
 
+## ⚠️ DEPRECATED
+
+**This repository is temporarily deprecated and is not maintained. It should not be used in production.**
+
+As of September 2026, the Succinct-operated SP1 Blobstream deployments are no longer maintained and
+do not receive new commitments. See the [Blobstream service status](https://docs.celestia.org/learn/blobstream/).
+
+This repository is archived for now and may be unarchived once a maintained Blobstream implementation
+is back in production.
+
+## Overview
+
 Simple monitoring tool for BlobstreamX contract. It allows provers/relayers for BlobstreamX to monitor the BlobstreamX updates, and be notified.
 
 The tool currently sends OTEL messages whenever a new batch is submitted, verified and committed by the contract:
